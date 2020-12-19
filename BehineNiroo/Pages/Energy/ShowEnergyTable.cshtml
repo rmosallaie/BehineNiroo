@@ -1,0 +1,197 @@
+﻿@page "/Energy/ShowEnergyTable/fdate={fdate}/tdate={tdate}/feeder={feeder}"
+@model BehineNiroo.ShowEnergyTableModel
+@{
+    Layout = null;
+    ViewData["Title"] = "نمایش نتایج انرژی";
+}
+
+@inject SignInManager<IdentityUser> signInManager;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BehineNiroo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="~/js/PersianDatePicker.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/css/PersianDatePicker.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="icon" href="~/images/BehinehLogo0.gif" />
+    <!-- Font Awesome -->
+    <link href="~/FontAwesome/css/all.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="~/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="~/css/style.min.css" rel="stylesheet">
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="~/js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-lg navbar-dark scrolling-navbar bg-dark mb-3">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#">
+                    <img src="~/images/BehinehLogo0.gif" height="35" alt="BehineNiroo logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse ">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index" style="font-family:'B Yekan';font-size:1.2rem;">خانه</a>
+                        </li>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    مدیریت
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="dropdown-item nav-link text-dark text-right" asp-area="" asp-page="/UserManagement/Index">کاربران</a>
+                                    <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="dropdown-item nav-link text-dark text-right" asp-area="" asp-page="/Administration/ListRoles">نقش ها</a>
+                                    <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="dropdown-item nav-link text-dark text-right" asp-area="" asp-page="/Account/ChangePassword">تغییر کلمه عبور</a>
+                                </div>
+                            </li>
+
+                        }
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="/Event/Event">رخدادها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="/Energy/Energy">انرژی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="/Logger/Logger">لاگر</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="/Online/Online">آنلاین</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="">فرمان</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="">Rmsخطای</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item text-white">
+                                <form method="post" asp-page="/Account/Logout">
+                                    <button type="submit" style="width: auto; font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link btn btn-link py-0 text-white">
+                                        خروج @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="font-family: 'B Yekan'; font-size: 1.2rem;" class="nav-link text-white" asp-area="" asp-page="/Account/Login">ورود به حساب</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="full-page-intro view" style=" background-image: url('/images/wp3246615.jpg');min-height:100%;height:auto;
+     background-repeat: no-repeat; background-attachment:fixed; background-size:cover">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center text-white pt-lg-4">
+                    <h3 style="font-family:'B Yekan'" class="mt-lg-5">بهینه نیرو اسپادان - سیستم انرژی</h3>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="container-fluid " id="print_this">
+            <div class="table-responsive bg-white text-nowrap">
+                <table id="EnergyTable" class="table table-striped table-bordered table-sm bg-white table-hover">
+                    <thead class="thead-light" data-placement="top" data-toggle="tooltip">
+                        <tr class="table-active">
+                            @*<th><input type="checkbox" id="checkall" /></th>*@
+                            <th style="font-weight:bold">EnergyTime</th>
+                            <th style="font-weight:bold">EnergyIntensity</th>
+                            <th style="font-weight:bold">ActElmpWh</th>
+                            <th style="font-weight:bold">T1ImpWh</th>
+                            <th style="font-weight:bold">T2ImpWh</th>
+                            <th style="font-weight:bold">T3ImpWh</th>
+                            <th style="font-weight:bold">T4ImpWh</th>
+                            <th style="font-weight:bold">DemandImpW</th>
+                            <th style="font-weight:bold">ActEExpWh</th>
+                            <th style="font-weight:bold">T1ExpWh</th>
+                            <th style="font-weight:bold">T2ExpWh</th>
+                            <th style="font-weight:bold">T3ExpWh</th>
+                            <th style="font-weight:bold">T4ExpWh</th>
+                            <th style="font-weight:bold">DemandExpw</th>
+                            <th style="font-weight:bold">ReactEImpVArh</th>
+                            <th style="font-weight:bold">City</th>
+                            <th style="font-weight:bold">Post</th>
+                            <th style="font-weight:bold">Feeder</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Energyitem in Model.energies)
+                        {
+                            <tr class="border-top">
+                                @*<td><input type="checkbox" class="checkthis" /></td>*@
+                                <td>@Energyitem.EnergyTime</td>
+                                @*<td>@Energyitem.EnergyIntensity</td>*@
+                                <td>-</td>
+                                <td>@Energyitem.ActElmpWh</td>
+                                <td>@Energyitem.T1ImpWh</td>
+                                <td>@Energyitem.T2ImpWh</td>
+                                <td>@Energyitem.T3ImpWh</td>
+                                <td>@Energyitem.T4ImpWh</td>
+                                <td>@Energyitem.DemandImpW</td>
+                                <td>@Energyitem.ActEExpWh</td>
+                                <td>@Energyitem.T1ExpWh</td>
+                                <td>@Energyitem.T2ExpWh</td>
+                                <td>@Energyitem.T3ExpWh</td>
+                                <td>@Energyitem.T4ExpWh</td>
+                                <td>@Energyitem.DemandExpw</td>
+                                <td>@Energyitem.ReactEImpVArh</td>
+                                <td>@Energyitem.CityName</td>
+                                <td>@Energyitem.PostName</td>
+                                <td>@Energyitem.FeederName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br />
+        <form method="post" class="text-center">
+            <button class="btn btn-primary" type="submit" style="width:auto;border-radius: 10em;font-family:'B Yekan';font-size:medium">انتقال به اکسل</button>
+        </form>
+        <br />
+    </div>
+    <footer class="page-footer text-center font-small wow fadeIn">
+        <div class="footer-copyright py-3">
+            &copy; 2020 - All Rights Reserved For BehineNiroo Co.<br />
+            <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+</body>
+</html>

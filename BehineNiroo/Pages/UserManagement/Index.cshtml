@@ -1,0 +1,43 @@
+﻿@page
+@model BehineNiroo.IndexModel
+@{
+    ViewData["Title"] = "لیست کاربران";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white text-center">مدیریت کاربران</h1>
+
+<p class="text-center">
+    <a asp-page="Create" class="btn btn-primary text-white" style="width:auto;border-radius: 10em;font-size:medium">ایجاد کاربر جدید</a>
+</p>
+<table class="table text-dark bg-white">
+    <thead>
+        <tr>
+            <th style="font-size:16px;font-weight:bold;font-family:'B Yekan'">
+                نام کاربری
+            </th>
+            <th></th>
+            <th class=" text-center" style="font-size:16px;font-weight:bold;font-family:'B Yekan'">
+                عملیات
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.users)
+        {
+            <tr>
+                <td style="font-size:18px;vertical-align:middle">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Role)*@
+                </td>
+                <td class=" text-center">
+                    @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-page="/UserManagement/Delete" class="btn btn-danger" asp-route-id="@item.Id" style="width:auto;border-radius: 10em;font-size:medium">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,61 @@
+﻿@page "/Settings/SavedSetting/type={type}"
+
+@model BehineNiroo.SavedSettingModel
+@{
+    ViewData["Title"] = "تنظیمات " + Model.title + " ذخیره شده";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <h1 class="text-center text-white">تنظیمات ذخیره شده&zwnj;ی @Model.title</h1>
+<br />
+<table class="table bg-white">
+    <thead>
+        <tr>
+            <th style="vertical-align:middle;font-weight:bold;font-size:1.1rem;font-family:'B Yekan'">
+                نام تنظیمات
+            </th>
+            @if (Model.title != "آنلاین")
+            {
+                <th class="text-center" style="vertical-align:middle;font-weight:bold;font-size:1.1rem;font-family:'B Yekan'">
+                    از تاریخ
+                </th>
+                <th class="text-center" style="vertical-align:middle;font-weight:bold;font-size:1.1rem;font-family:'B Yekan'">
+                    تا تاریخ
+                </th>
+            }
+            else
+            {
+                <th></th>
+                <th></th>
+            }
+            
+            <th style="vertical-align:middle;font-weight:bold;font-size:1.1rem;font-family:'B Yekan'" class="text-center">
+                عملیات
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.setting)
+        {
+            <tr>
+                <td style="vertical-align:middle;font-size:1.1rem;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center"  style="vertical-align:middle;font-size:1.1rem;font-family:'B Yekan'">
+                    @Html.DisplayFor(modelItem => item.FromDate)
+                </td>
+                <td class="text-center"  style="vertical-align:middle;font-size:1.1rem;font-family:'B Yekan'">
+                    @Html.DisplayFor(modelItem => item.ToDate)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.items)
+                    </td>*@
+                <td style="vertical-align:middle" class="text-center">
+                    <a asp-page="/Settings/LoadSetting" asp-route-id="@item.Id" class="btn btn-primary" style="width:auto;border-radius: 10em;font-size:medium">بارگذاری</a> |
+                    <a asp-page="/Settings/DeleteSetting" asp-route-id="@item.Id" class="btn btn-danger" style="width:auto;border-radius: 10em;font-size:medium">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

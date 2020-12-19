@@ -1,0 +1,34 @@
+﻿@page
+@model BehineNiroo.EditUsersInRoleModel
+@{
+    ViewData["Title"] = "ویرایش کاربران نقش";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white text-center">ویرایش کاربران این نقش</h1>
+<br />
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-right">کاربران این نقش را انتخاب کنید</h2>
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.model.Count; i++)
+            {
+                <div class="form-check m-1" style="font-size:1.2rem;">
+                    <input type="hidden" asp-for="@Model.model[i].UserId" />
+                    <input type="hidden" asp-for="@Model.model[i].UserName" />
+                    <input asp-for="@Model.model[i].IsSelected" class="form-check-input" />
+                    <label  class="form-check-label" asp-for="@Model.model[i].IsSelected">
+                        @Model.model[i].UserName
+                    </label>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" style="width:auto;border-radius: 10em;font-size:medium">به روز رسانی</button>
+            <a asp-page="/Administration/ListRoles" style="width:auto;border-radius: 10em;font-size:medium" class="btn btn-primary">لغو</a>
+        </div>
+    </div>
+</form>
+

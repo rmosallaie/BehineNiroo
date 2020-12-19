@@ -1,0 +1,30 @@
+﻿@page
+@model BehineNiroo.ListRolesModel
+@{
+    ViewData["Title"] = "لیست نقش ها";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white text-center">نقش ها</h1>
+
+<a class="btn btn-primary mb-3" style="width:auto;border-radius: 10em;font-size:medium" asp-page="/Administration/CreateRole">افزودن نقش جدید</a>
+
+@foreach (var role in Model.roles)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            Role Id : @role.Id
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Role Name: @role.Name</h5>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" style="border-radius: 10em;font-size:medium" asp-page="/Administration/EditRole" asp-route-id="@role.Id">ویرایش</a>
+            <a asp-page="/Administration/DeleteRole" asp-route-id="@role.Id" style="border-radius: 10em;font-size:medium" class="btn btn-danger">حذف</a>
+        </div>
+    </div>
+
+}
+
+
+

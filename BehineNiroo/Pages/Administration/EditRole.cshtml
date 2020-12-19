@@ -1,0 +1,56 @@
+﻿@page
+@model BehineNiroo.EditRoleModel
+@{
+    ViewData["Title"] = "ویرایش نقش";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white text-center">ویرایش نقش</h1>
+
+<form method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="editRole.Id" class="col-sm-2 col-form-label text-white" style="font-size:20px;font-weight:bold"></label>
+        <div class="col-sm-10">
+            <input type="text" asp-for="editRole.Id" disabled class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="editRole.RoleName" class="col-sm-2 col-form-label text-white" style="font-size:20px;font-weight:bold"></label>
+        <div class="col-sm-10">
+            <input asp-for="editRole.RoleName" class="form-control">
+            <span asp-validation-for="editRole.RoleName" class="text-white bg-danger"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-white bg-danger text-right"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" style="border-radius: 10em;font-size:medium" class="btn btn-primary">به روز رسانی</button>
+            <a asp-page="/Administration/ListRoles" style="border-radius: 10em;font-size:medium" class="btn btn-primary">لغو</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-right">کاربران این نقش</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.editRole.Users.Any())
+            {
+                foreach (var user in Model.editRole.Users)
+                {
+                    <h5 class="card-title">@user</h5>
+                }
+            }
+            else
+            {
+                <h5 class="card-title">کاربری موجود نیست</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-page="/Administration/EditUsersInRole" 
+               asp-route-roleId="@Model.editRole.Id" class="btn btn-primary" style="width:auto;border-radius: 10em;font-size:medium">افزودن یا حذف کاربران این نقش</a>
+        </div>
+    </div>
+</form>

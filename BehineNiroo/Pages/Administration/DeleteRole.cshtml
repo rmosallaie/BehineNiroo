@@ -1,0 +1,39 @@
+﻿@page
+@model BehineNiroo.Pages.DeleteRoleModel
+@{
+    ViewData["Title"] = "حذف نقش";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white text-center">حذف کردن نقش</h1>
+
+<div class="card">
+    <div class="card-header text-right">
+        <h3>آیا می خواهید این نقش را حذف کنید؟</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                Role Id
+            </dt>
+            <dd class="col-sm-10">
+                @Model.deleteRole.Id
+            </dd>
+
+            <dt class="col-sm-2">
+                Role Name
+            </dt>
+            <dd class="col-sm-10">
+                @Model.deleteRole.RoleName
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <form method="post">
+            <input type="hidden" asp-for="deleteRole.Id" />
+            <button type="submit" asp-route-id="@Model.deleteRole.Id" class="btn btn-danger" style="width:auto;border-radius: 10em;font-size:medium">حذف</button> |
+            <a asp-page="/Administration/ListRoles">بازگشت</a>
+        </form>
+    </div>
+</div>
+

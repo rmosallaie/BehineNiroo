@@ -1,0 +1,39 @@
+﻿@page
+@model BehineNiroo.DeleteSettingModel
+@{
+    ViewData["Title"] = "حذف تنظیمات";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-white">حذف تنظیمات</h1>
+<br />  
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-right">جزئیات</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2" style="font-weight:bold;font-size:1.1rem;font-family:'B Yekan'">
+                @*@Html.DisplayNameFor(model => model.setting.Name)*@
+                نام تنظیم
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.setting.Name)
+            </dd>
+            <dt class="col-sm-2" style="font-weight:bold;font-size:1.1rem;font-family:'B Yekan'">
+                @*@Html.DisplayNameFor(model => model.setting.Items)*@
+                آیتم&zwnj;ها
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.setting.Items)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <form method="post">
+            <input type="hidden" asp-for="setting.Id" />
+            <button type="submit" style="width:auto;border-radius: 10em;font-size:medium" asp-route-id="@Model.setting.Id" asp-route-type="@Model.setting.Type" class="btn btn-danger">حذف</button> |
+            <a asp-page="/Settings/SavedSetting" asp-route-type="@Model.setting.Type">بازگشت</a>
+        </form>
+    </div>
+</div>
