@@ -39,6 +39,9 @@
     </script>
 
     <script type="text/javascript">
+
+        var x = 20;
+
         setInterval(function () {
             NewEvent();
         }, 5000);
@@ -49,7 +52,7 @@
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                //data: {},
+                data: { limit: x },
                 contentType: 'application/json',
                 url: '@Url.Page("/Event/RealTimeEvents","NewEvents")',
                 success: function (result) {
@@ -88,6 +91,11 @@
                 }
             });
         }*@
+
+        function get_limit() {
+            debugger;
+            x = (document).getElementById("get_limit").value;
+        }
 
     </script>
 
@@ -173,6 +181,11 @@
                     <div class="text-center text-white pt-lg-4">
                         <h3 style="font-family:'B Yekan'">بهینه نیرو اسپادان - سیستم مشاهده لحظه&zwnj;ای رخدادها</h3>
                         <h5 style="font-family:'B Yekan'">این جدول هر ثانیه به روز رسانی می&zwnj;شود</h5>
+                    </div>
+                    <div class="text-center text-white" style="font-family:'B Yekan';">
+                        <button class="btn btn-primary" type="button" onclick="get_limit()" style="border-radius:10em;font-size:medium">اعمال</button>
+                        <input id="get_limit" type="text" size="4" style="border-radius:.25rem" />
+                        <label style="font-size: medium">تعداد رخداها</label>
                     </div>
                 </div>
             </div>

@@ -24,12 +24,14 @@ namespace BehineNiroo
 
         string cs = Globals.EventConnection;
 
-        string query = "select EventNumber,EventTime,MilliTime,EventValue," +
-            "EventReason,EventType,CityName,PostName,FeederName from event.event ee inner join event.eventsetting es " +
-            "on es.SerialNum = ee.SerialNum order by EventTime Desc limit 100";
+        string query;
 
         public void OnGet()
         {
+            query = "select EventNumber,EventTime,MilliTime,EventValue," +
+            "EventReason,EventType,CityName,PostName,FeederName from event.event ee inner join event.eventsetting es " +
+            "on es.SerialNum = ee.SerialNum order by EventNumber Desc limit 20";
+
             if (ModelState.IsValid)
             {
                 using(MySqlConnection connection = new MySqlConnection(cs))
@@ -60,8 +62,11 @@ namespace BehineNiroo
         }
 
 
-        public IActionResult OnGetNewEvents()
+        public IActionResult OnGetNewEvents(int limit)
         {
+            query = "select EventNumber,EventTime,MilliTime,EventValue," +
+            "EventReason,EventType,CityName,PostName,FeederName from event.event ee inner join event.eventsetting es " +
+            "on es.SerialNum = ee.SerialNum order by EventNumber Desc limit " + limit;
             RealTimeEvents.Clear();
             using (MySqlConnection connection = new MySqlConnection(cs))
             {
