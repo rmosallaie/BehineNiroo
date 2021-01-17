@@ -29,7 +29,7 @@ namespace BehineNiroo.Pages.Online
             string SerialNum = "";
             string parameters = Globals.OnlineParameters;
 
-            //////// Sparation of input parameters
+                                                                //////// Separation of input parameters
             ///
             ParametersSplit = parameters.Split(",");
 
@@ -43,7 +43,7 @@ namespace BehineNiroo.Pages.Online
             }
 
             int len = 0;
-                                                            ////////////// Seprate Same Parameters
+                                                            ////////////// Separate Same Parameters
             while (ParametersSplit.Length != 0)
             {
                 SameItems[len].Add(ParametersSplit[0]);

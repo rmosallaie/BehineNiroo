@@ -54,6 +54,8 @@ namespace BehineNiroo
 
             public bool SettingCheckbox { get; set; }
 
+            public int RealTimeEventCount { get; set; }
+
         }
 
         [BindProperty]
@@ -203,7 +205,7 @@ namespace BehineNiroo
             return new JsonResult(result);
         }
 
-        public IActionResult OnPost(DateTime SDate, DateTime EDate)
+        public IActionResult OnPostDateRange(DateTime SDate, DateTime EDate)
         {
             
             PersianDateTime persianDate1 = PersianDateTime.Parse(SDate.ToString("yyyy/MM/dd"));
@@ -251,6 +253,30 @@ namespace BehineNiroo
                 //FromDate = DateTime.Now.AddMonths(-1).Date;
                 //ToDate = DateTime.Now.Date;
 
+            }
+            return Page();
+        }
+
+        public IActionResult OnPostRealTime()
+        {
+            if (ModelState.IsValid)
+            {
+                string feeder = "";
+
+                foreach (var item in Input.Feeder)
+                {
+                    feeder = feeder + item + ",";
+                }
+
+                feeder = feeder.Remove(feeder.Length - 1);
+
+                Response.Redirect("/Event/RealTimeEvents/feeder=" + feeder + "/RealTimeEventCount=" + Input.RealTimeEventCount);
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Fill the Required Field");
+                OnGet();
+                return Page();
             }
             return Page();
         }

@@ -336,7 +336,7 @@
     <div class="full-page-intro view" style=" background-image: url('/images/wp3246615.jpg');min-height:100%;height:auto;
      background-repeat: no-repeat; background-attachment:fixed; background-size:cover">
         <div class="row">
-            <form class=" col-md-12 pt-lg-4" method="post">
+            <form method="post" class=" col-md-12 pt-lg-4">
                 <div class="text-center text-white mt-lg-5">
                     <h3 style="font-family:'B Yekan'">بهینه نیرو اسپادان - سیستم رخدادها</h3>
                     <h5 style="font-family:'B Yekan'"><a asp-page="/Event/RealTimeEvents" class="text-white">برای مشاهده لحظه&zwnj;ای رخدادها کلیک کنید</a></h5>
@@ -347,7 +347,7 @@
                         <div class="col-md-4">
                             <div class="card" style="height:100%">
                                 <div class="card-header">
-                                    <h4 class="text-right" style="font-family:'B Yekan'">انتخاب شهر-پست-فیدر</h4>
+                                    <h5 class="text-right" style="font-family:'B Yekan'">انتخاب شهر-پست-فیدر</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="text-right" style="font-family: 'B Yekan';"><span asp-validation-for="Input.Feeder" class="text-danger"></span></div>
@@ -356,6 +356,12 @@
                                             @(new Microsoft.AspNetCore.Html.HtmlString(Model.CityPostFeederListItems))
                                         </ul>
                                     </div>
+                                    <div class="text-right">
+                                        <label style="font-family:'B Yekan';font-size:small;"> :تعداد نتایج لحظه&zwnj;ای</label>
+                                        <input class="form-control text-right" asp-for="Input.RealTimeEventCount" value="20" style="font-family:'B Yekan';font-size:small" type="text" placeholder="تعداد نتایجی که می خواهید نمایش داده شود" />
+                                    </div>
+                                    <br />
+                                    <button type="submit" id="showbtn" asp-page-handler="RealTime" class="btn btn-primary blue-gradient" style="border-radius: 10em;font-family:'B Yekan';font-size:small;width:100%">نمایش نتایج لحظه&zwnj;ای<i class="fas fa-th"></i></button>
                                 </div>
                             </div>
                             <br />
@@ -363,36 +369,36 @@
                         <div class="col-md-4">
                             <div class="card" style="height:100%">
                                 <div class="card-header">
-                                    <h4 class="text-right" style="font-family:'B Yekan'">انتخاب بازه زمانی</h4>
+                                    <h5 class="text-right" style="font-family:'B Yekan';">انتخاب بازه زمانی</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group text-right">
-                                        <label asp-for="StartDate" style="font-family:'B Yekan'">از (پنج روز قبل)</label>
-                                        <input style="font-family:'B Yekan'" class="form-control" type="text" id="FromDate" asp-for="StartDate" onclick="PersianDatePicker.Show(this,'@Model.StartDate')" name="SDate" />
+                                        <label asp-for="StartDate" style="font-family:'B Yekan';font-size: small;">از (پنج روز قبل)</label>
+                                        <input style="font-family:'B Yekan';font-size: small;" class="form-control" type="text" id="FromDate" asp-for="StartDate" onclick="PersianDatePicker.Show(this,'@Model.StartDate')" name="SDate" />
                                     </div>
                                     <div class="form-group text-right">
-                                        <label asp-for="EndDate" style="font-family:'B Yekan'">تا (امروز)</label>
-                                        <input style="font-family:'B Yekan'" class="form-control" type="text" asp-for="EndDate" onclick="PersianDatePicker.Show(this,'@Model.EndDate')" id="ToDate" name="EDate" />
+                                        <label asp-for="EndDate" style="font-family:'B Yekan';font-size: small;">تا (امروز)</label>
+                                        <input style="font-family:'B Yekan';font-size: small;" class="form-control" type="text" asp-for="EndDate" onclick="PersianDatePicker.Show(this,'@Model.EndDate')" id="ToDate" name="EDate" />
                                     </div>
+                                    <button type="submit" asp-page-handler="DateRange" id="showbtn" class="btn btn-primary blue-gradient" style="border-radius: 10em;font-family:'B Yekan';font-size:small;width:100%">نمایش نتایج بازه زمانی<i class="fas fa-th"></i></button>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-md-4">
                             <div class="card" style="height:100%">
                                 <div class="card-header">
-                                    <h4 class="text-right" style="font-family:'B Yekan'">انتخاب نوع رخداد</h4>
+                                    <h5 class="text-right" style="font-family:'B Yekan'">انتخاب نوع رخداد</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group text-right">
                                         <div class="radio">
-                                            <h6 style="font-family:'B Yekan'">نمایش رخدادهای داخلی و رخدادهای فرایند <input asp-for="Input.EventType" type="radio" value="2"></h6>
+                                            <label style="font-family:'B Yekan';font-size: small;">نمایش رخدادهای داخلی و رخدادهای فرایند <input asp-for="Input.EventType" type="radio" value="2"></label>
                                         </div>
                                         <div class="radio">
-                                            <h6 style="font-family:'B Yekan'">تنها رخدادهای فرایند نمایش داده شوند <input asp-for="Input.EventType" type="radio" value="0" checked></h6>
+                                            <label style="font-family:'B Yekan';font-size: small;">تنها رخدادهای فرایند نمایش داده شوند <input asp-for="Input.EventType" type="radio" value="0" checked></label>
                                         </div>
                                         <div class="radio">
-                                            <h6 style="font-family:'B Yekan'">تنها رخدادهای داخلی نمایش داده شوند <input asp-for="Input.EventType" type="radio" value="1"></h6>
+                                            <label style="font-family:'B Yekan';font-size: small;">تنها رخدادهای داخلی نمایش داده شوند <input asp-for="Input.EventType" type="radio" value="1"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -402,18 +408,17 @@
                 </div>
                 <br />
                 <div class="d-flex justify-content-center">
-                    <button type="submit" id="showbtn" class="btn btn-primary blue-gradient" style="border-radius: 10em;font-family:'B Yekan';font-size:medium">نمایش نتایج <i class="fas fa-th"></i></button>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 text-right">
-                            <div class="bg-white pt-2 pl-2 pr-2 " style="font-family: 'B Yekan';border-top-left-radius:5px; border-top-right-radius: 5px; vertical-align: middle;">
+                            <div class="bg-white pt-2 pl-2 pr-2 " style="font-family: 'B Yekan';font-size: small;border-top-left-radius:5px; border-top-right-radius: 5px; vertical-align: middle;">
                                 <label asp-for="Input.SettingCheckbox">
                                     ذخیره تنظیمات کنونی
                                 </label>
                                 <input asp-for="Input.SettingCheckbox" />
                             </div>
-                            <div class="bg-white p-2 " id="savesetting" style="font-family: 'B Yekan';visibility:hidden; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                            <div class="bg-white p-2 " id="savesetting" style="font-family: 'B Yekan';font-size: small;visibility:hidden; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
                                 <input asp-for="Input.SettingName" dir="auto" class="ml-2 settingname" placeholder="...نام تنظیم" />
                                 <label asp-for="Input.SettingName">: نام</label>
                                 <div class="mt-2"><span style="font-family:'B Yekan'" class="text-danger" id="settingnameexist"></span></div>
@@ -422,7 +427,7 @@
                         <div class="col-md-8">
                             <div class="row d-flex flex-row-reverse">
                                 <div class="text-right">
-                                    <a asp-page="/Settings/SavedSetting" asp-route-type="event" style="font-family:'B Yekan';width:auto; border-radius: 10em;font-size:medium" class="btn btn-info aqua-gradient">تنظیمات ذخیره شده <i class="fa fa-cog"></i></a>
+                                    <a asp-page="/Settings/SavedSetting" asp-route-type="event" style="font-family:'B Yekan';width:auto; border-radius: 10em;font-size:small" class="btn btn-info aqua-gradient">تنظیمات ذخیره شده <i class="fa fa-cog"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -18,13 +18,13 @@ namespace BehineNiroo.Pages
         public static int OnlinePageLoadCount = 0;
         public static string OnlineParameters;
 
-        public static string EventConnection = "server=localhost;user id=root;database=event;persistsecurityinfo=True;password=root;";
-        public static string EnergyConnection = "server=localhost;user id=root;database=energy;persistsecurityinfo=True;password=root;";
-        public static string LoggerConnection = "server=localhost;user id=root;database=logger;persistsecurityinfo=True;password=root;";
-        public static string SavingsConnection = "server=localhost;user id=root;database=savings;persistsecurityinfo=True;password=root;";
-        public static string SecurityConnection = "server=localhost;user id=root;database=security;persistsecurityinfo=True;password=root;";
-        public static string ManagerConnection = "server=localhost;user id=root;database=manager;persistsecurityinfo=True;password=root;";
-        public static string PocketSwitchConnection = "server=localhost;user id=root;database=pocketswitch;persistsecurityinfo=True;password=root";
+        public static string EventConnection =          "server=localhost;user id=root;database=event;persistsecurityinfo=True;password=root;";
+        public static string EnergyConnection =         "server=localhost;user id=root;database=energy;persistsecurityinfo=True;password=root;";
+        public static string LoggerConnection =         "server=localhost;user id=root;database=logger;persistsecurityinfo=True;password=root;";
+        public static string SavingsConnection =        "server=localhost;user id=root;database=savings;persistsecurityinfo=True;password=root;";
+        public static string SecurityConnection =       "server=localhost;user id=root;database=security;persistsecurityinfo=True;password=root;";
+        public static string ManagerConnection =        "server=localhost;user id=root;database=manager;persistsecurityinfo=True;password=root;";
+        public static string PocketSwitchConnection =   "server=localhost;user id=root;database=pocketswitch;persistsecurityinfo=True;password=root;";
     }
 
     [AllowAnonymous]
